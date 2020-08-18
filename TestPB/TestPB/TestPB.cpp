@@ -25,6 +25,11 @@ int _tmain(int argc, _TCHAR* argv[])
         pPhoneNumObj->set_number("1801800181");
         pPhoneNumObj->set_type(Test::User_PhoneType_WORK);
 
+        //添加关注的股票信息
+        Test::StockInfo *pStockInfo = objUser.mutable_stock_ids();
+        pStockInfo->add_stockid(6000);
+        pStockInfo->add_stockid(7000);
+
         //将数据写入test.pb文件
         fstream fileOut("test.pb", ios::out | ios::binary | ios::trunc);
         objUser.SerializeToOstream(&fileOut);//将消息写入文件流
@@ -46,6 +51,7 @@ int _tmain(int argc, _TCHAR* argv[])
                 cout << "nickname = " << objUser.nickname() << endl;
             }
 
+            //获取电话信息
             int iNumCount = objUser.phone_size();
             for (int nIndex = 0; nIndex < iNumCount; ++nIndex)
             {
@@ -57,6 +63,16 @@ int _tmain(int argc, _TCHAR* argv[])
                 if (tmpObj.has_type())
                 {
                     cout << "type " << nIndex << " = " << (int)tmpObj.type() << endl;
+                }
+            }
+            //获取股票信息
+            if (objUser.has_stock_ids())
+            {
+                Test::StockInfo stStockInfo = objUser.stock_ids();
+                int iSize = stStockInfo.stockid_size();
+                for (int nIndex = 0; nIndex < iSize; ++nIndex)
+                {
+                    cout << "持有股票：" << stStockInfo.stockid(nIndex) << endl;
                 }
             }
         }

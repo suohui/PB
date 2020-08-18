@@ -1,5 +1,6 @@
 package Test;
 
+//这个是注释
 message User{
     required int32 id = 1;
     optional string nickname = 2;
@@ -13,4 +14,9 @@ message User{
         optional PhoneType type = 2 [ default = HOME ];
     }
     repeated PhoneNumber phone = 4;
+	optional StockInfo stock_ids = 5;
+}
+
+message StockInfo{
+	repeated int32 stockid = 1;
 }

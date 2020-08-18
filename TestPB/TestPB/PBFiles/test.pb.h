@@ -36,6 +36,7 @@ void protobuf_ShutdownFile_test_2eproto();
 
 class User;
 class User_PhoneNumber;
+class StockInfo;
 
 enum User_PhoneType {
   User_PhoneType_MOBILE = 0,
@@ -268,21 +269,33 @@ class User : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Test::User_PhoneNumber >*
       mutable_phone();
 
+  // optional .Test.StockInfo stock_ids = 5;
+  inline bool has_stock_ids() const;
+  inline void clear_stock_ids();
+  static const int kStockIdsFieldNumber = 5;
+  inline const ::Test::StockInfo& stock_ids() const;
+  inline ::Test::StockInfo* mutable_stock_ids();
+  inline ::Test::StockInfo* release_stock_ids();
+  inline void set_allocated_stock_ids(::Test::StockInfo* stock_ids);
+
   // @@protoc_insertion_point(class_scope:Test.User)
  private:
   inline void set_has_id();
   inline void clear_has_id();
   inline void set_has_nickname();
   inline void clear_has_nickname();
+  inline void set_has_stock_ids();
+  inline void clear_has_stock_ids();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* nickname_;
   ::google::protobuf::RepeatedPtrField< ::Test::User_PhoneNumber > phone_;
+  ::Test::StockInfo* stock_ids_;
   ::google::protobuf::int32 id_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
 
   friend void  protobuf_AddDesc_test_2eproto();
   friend void protobuf_AssignDesc_test_2eproto();
@@ -290,6 +303,91 @@ class User : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static User* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class StockInfo : public ::google::protobuf::Message {
+ public:
+  StockInfo();
+  virtual ~StockInfo();
+
+  StockInfo(const StockInfo& from);
+
+  inline StockInfo& operator=(const StockInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const StockInfo& default_instance();
+
+  void Swap(StockInfo* other);
+
+  // implements Message ----------------------------------------------
+
+  StockInfo* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const StockInfo& from);
+  void MergeFrom(const StockInfo& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated int32 stockid = 1;
+  inline int stockid_size() const;
+  inline void clear_stockid();
+  static const int kStockidFieldNumber = 1;
+  inline ::google::protobuf::int32 stockid(int index) const;
+  inline void set_stockid(int index, ::google::protobuf::int32 value);
+  inline void add_stockid(::google::protobuf::int32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+      stockid() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+      mutable_stockid();
+
+  // @@protoc_insertion_point(class_scope:Test.StockInfo)
+ private:
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > stockid_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_test_2eproto();
+  friend void protobuf_AssignDesc_test_2eproto();
+  friend void protobuf_ShutdownFile_test_2eproto();
+
+  void InitAsDefaultInstance();
+  static StockInfo* default_instance_;
 };
 // ===================================================================
 
@@ -510,6 +608,73 @@ User::phone() const {
 inline ::google::protobuf::RepeatedPtrField< ::Test::User_PhoneNumber >*
 User::mutable_phone() {
   return &phone_;
+}
+
+// optional .Test.StockInfo stock_ids = 5;
+inline bool User::has_stock_ids() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void User::set_has_stock_ids() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void User::clear_has_stock_ids() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void User::clear_stock_ids() {
+  if (stock_ids_ != NULL) stock_ids_->::Test::StockInfo::Clear();
+  clear_has_stock_ids();
+}
+inline const ::Test::StockInfo& User::stock_ids() const {
+  return stock_ids_ != NULL ? *stock_ids_ : *default_instance_->stock_ids_;
+}
+inline ::Test::StockInfo* User::mutable_stock_ids() {
+  set_has_stock_ids();
+  if (stock_ids_ == NULL) stock_ids_ = new ::Test::StockInfo;
+  return stock_ids_;
+}
+inline ::Test::StockInfo* User::release_stock_ids() {
+  clear_has_stock_ids();
+  ::Test::StockInfo* temp = stock_ids_;
+  stock_ids_ = NULL;
+  return temp;
+}
+inline void User::set_allocated_stock_ids(::Test::StockInfo* stock_ids) {
+  delete stock_ids_;
+  stock_ids_ = stock_ids;
+  if (stock_ids) {
+    set_has_stock_ids();
+  } else {
+    clear_has_stock_ids();
+  }
+}
+
+// -------------------------------------------------------------------
+
+// StockInfo
+
+// repeated int32 stockid = 1;
+inline int StockInfo::stockid_size() const {
+  return stockid_.size();
+}
+inline void StockInfo::clear_stockid() {
+  stockid_.Clear();
+}
+inline ::google::protobuf::int32 StockInfo::stockid(int index) const {
+  return stockid_.Get(index);
+}
+inline void StockInfo::set_stockid(int index, ::google::protobuf::int32 value) {
+  stockid_.Set(index, value);
+}
+inline void StockInfo::add_stockid(::google::protobuf::int32 value) {
+  stockid_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+StockInfo::stockid() const {
+  return stockid_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+StockInfo::mutable_stockid() {
+  return &stockid_;
 }
 
 

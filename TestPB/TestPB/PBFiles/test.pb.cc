@@ -27,6 +27,9 @@ const ::google::protobuf::Descriptor* User_PhoneNumber_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   User_PhoneNumber_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* User_PhoneType_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* StockInfo_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  StockInfo_reflection_ = NULL;
 
 }  // namespace
 
@@ -38,10 +41,11 @@ void protobuf_AssignDesc_test_2eproto() {
       "test.proto");
   GOOGLE_CHECK(file != NULL);
   User_descriptor_ = file->message_type(0);
-  static const int User_offsets_[3] = {
+  static const int User_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(User, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(User, nickname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(User, phone_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(User, stock_ids_),
   };
   User_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -71,6 +75,21 @@ void protobuf_AssignDesc_test_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(User_PhoneNumber));
   User_PhoneType_descriptor_ = User_descriptor_->enum_type(0);
+  StockInfo_descriptor_ = file->message_type(1);
+  static const int StockInfo_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StockInfo, stockid_),
+  };
+  StockInfo_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      StockInfo_descriptor_,
+      StockInfo::default_instance_,
+      StockInfo_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StockInfo, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StockInfo, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(StockInfo));
 }
 
 namespace {
@@ -87,6 +106,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
     User_descriptor_, &User::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     User_PhoneNumber_descriptor_, &User_PhoneNumber::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    StockInfo_descriptor_, &StockInfo::default_instance());
 }
 
 }  // namespace
@@ -96,6 +117,8 @@ void protobuf_ShutdownFile_test_2eproto() {
   delete User_reflection_;
   delete User_PhoneNumber::default_instance_;
   delete User_PhoneNumber_reflection_;
+  delete StockInfo::default_instance_;
+  delete StockInfo_reflection_;
 }
 
 void protobuf_AddDesc_test_2eproto() {
@@ -105,18 +128,21 @@ void protobuf_AddDesc_test_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\ntest.proto\022\004Test\"\301\001\n\004User\022\n\n\002id\030\001 \002(\005\022"
+    "\n\ntest.proto\022\004Test\"\345\001\n\004User\022\n\n\002id\030\001 \002(\005\022"
     "\020\n\010nickname\030\002 \001(\t\022%\n\005phone\030\004 \003(\0132\026.Test."
-    "User.PhoneNumber\032G\n\013PhoneNumber\022\016\n\006numbe"
-    "r\030\001 \002(\t\022(\n\004type\030\002 \001(\0162\024.Test.User.PhoneT"
-    "ype:\004HOME\"+\n\tPhoneType\022\n\n\006MOBILE\020\000\022\010\n\004HO"
-    "ME\020\001\022\010\n\004WORK\020\002", 214);
+    "User.PhoneNumber\022\"\n\tstock_ids\030\005 \001(\0132\017.Te"
+    "st.StockInfo\032G\n\013PhoneNumber\022\016\n\006number\030\001 "
+    "\002(\t\022(\n\004type\030\002 \001(\0162\024.Test.User.PhoneType:"
+    "\004HOME\"+\n\tPhoneType\022\n\n\006MOBILE\020\000\022\010\n\004HOME\020\001"
+    "\022\010\n\004WORK\020\002\"\034\n\tStockInfo\022\017\n\007stockid\030\001 \003(\005", 280);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "test.proto", &protobuf_RegisterTypes);
   User::default_instance_ = new User();
   User_PhoneNumber::default_instance_ = new User_PhoneNumber();
+  StockInfo::default_instance_ = new StockInfo();
   User::default_instance_->InitAsDefaultInstance();
   User_PhoneNumber::default_instance_->InitAsDefaultInstance();
+  StockInfo::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_test_2eproto);
 }
 
@@ -428,6 +454,7 @@ void User_PhoneNumber::Swap(User_PhoneNumber* other) {
 const int User::kIdFieldNumber;
 const int User::kNicknameFieldNumber;
 const int User::kPhoneFieldNumber;
+const int User::kStockIdsFieldNumber;
 #endif  // !_MSC_VER
 
 User::User()
@@ -436,6 +463,7 @@ User::User()
 }
 
 void User::InitAsDefaultInstance() {
+  stock_ids_ = const_cast< ::Test::StockInfo*>(&::Test::StockInfo::default_instance());
 }
 
 User::User(const User& from)
@@ -448,6 +476,7 @@ void User::SharedCtor() {
   _cached_size_ = 0;
   id_ = 0;
   nickname_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  stock_ids_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -460,6 +489,7 @@ void User::SharedDtor() {
     delete nickname_;
   }
   if (this != default_instance_) {
+    delete stock_ids_;
   }
 }
 
@@ -491,6 +521,9 @@ void User::Clear() {
       if (nickname_ != &::google::protobuf::internal::kEmptyString) {
         nickname_->clear();
       }
+    }
+    if (has_stock_ids()) {
+      if (stock_ids_ != NULL) stock_ids_->::Test::StockInfo::Clear();
     }
   }
   phone_.Clear();
@@ -547,6 +580,20 @@ bool User::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(34)) goto parse_phone;
+        if (input->ExpectTag(42)) goto parse_stock_ids;
+        break;
+      }
+
+      // optional .Test.StockInfo stock_ids = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_stock_ids:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_stock_ids()));
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -589,6 +636,12 @@ void User::SerializeWithCachedSizes(
       4, this->phone(i), output);
   }
 
+  // optional .Test.StockInfo stock_ids = 5;
+  if (has_stock_ids()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5, this->stock_ids(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -619,6 +672,13 @@ void User::SerializeWithCachedSizes(
         4, this->phone(i), target);
   }
 
+  // optional .Test.StockInfo stock_ids = 5;
+  if (has_stock_ids()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        5, this->stock_ids(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -642,6 +702,13 @@ int User::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->nickname());
+    }
+
+    // optional .Test.StockInfo stock_ids = 5;
+    if (has_stock_ids()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->stock_ids());
     }
 
   }
@@ -686,6 +753,9 @@ void User::MergeFrom(const User& from) {
     if (from.has_nickname()) {
       set_nickname(from.nickname());
     }
+    if (from.has_stock_ids()) {
+      mutable_stock_ids()->::Test::StockInfo::MergeFrom(from.stock_ids());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -716,6 +786,7 @@ void User::Swap(User* other) {
     std::swap(id_, other->id_);
     std::swap(nickname_, other->nickname_);
     phone_.Swap(&other->phone_);
+    std::swap(stock_ids_, other->stock_ids_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -727,6 +798,217 @@ void User::Swap(User* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = User_descriptor_;
   metadata.reflection = User_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int StockInfo::kStockidFieldNumber;
+#endif  // !_MSC_VER
+
+StockInfo::StockInfo()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void StockInfo::InitAsDefaultInstance() {
+}
+
+StockInfo::StockInfo(const StockInfo& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void StockInfo::SharedCtor() {
+  _cached_size_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+StockInfo::~StockInfo() {
+  SharedDtor();
+}
+
+void StockInfo::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void StockInfo::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* StockInfo::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return StockInfo_descriptor_;
+}
+
+const StockInfo& StockInfo::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_test_2eproto();
+  return *default_instance_;
+}
+
+StockInfo* StockInfo::default_instance_ = NULL;
+
+StockInfo* StockInfo::New() const {
+  return new StockInfo;
+}
+
+void StockInfo::Clear() {
+  stockid_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool StockInfo::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated int32 stockid = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_stockid:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 1, 8, input, this->mutable_stockid())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, this->mutable_stockid())));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(8)) goto parse_stockid;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void StockInfo::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // repeated int32 stockid = 1;
+  for (int i = 0; i < this->stockid_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(
+      1, this->stockid(i), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* StockInfo::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // repeated int32 stockid = 1;
+  for (int i = 0; i < this->stockid_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteInt32ToArray(1, this->stockid(i), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int StockInfo::ByteSize() const {
+  int total_size = 0;
+
+  // repeated int32 stockid = 1;
+  {
+    int data_size = 0;
+    for (int i = 0; i < this->stockid_size(); i++) {
+      data_size += ::google::protobuf::internal::WireFormatLite::
+        Int32Size(this->stockid(i));
+    }
+    total_size += 1 * this->stockid_size() + data_size;
+  }
+
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void StockInfo::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const StockInfo* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const StockInfo*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void StockInfo::MergeFrom(const StockInfo& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  stockid_.MergeFrom(from.stockid_);
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void StockInfo::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void StockInfo::CopyFrom(const StockInfo& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool StockInfo::IsInitialized() const {
+
+  return true;
+}
+
+void StockInfo::Swap(StockInfo* other) {
+  if (other != this) {
+    stockid_.Swap(&other->stockid_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata StockInfo::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = StockInfo_descriptor_;
+  metadata.reflection = StockInfo_reflection_;
   return metadata;
 }
 
